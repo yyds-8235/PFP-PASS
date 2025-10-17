@@ -76,5 +76,16 @@ public class AuthController {
         StpUtil.logout();
         return Result.success("注销成功");
     }
+
+    @GetMapping("/validate")
+    @Operation(summary = "验证登录状态")
+    public Result<String> validate() {
+        try {
+            StpUtil.checkLogin();
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("未登录");
+        }
+    }
 }
 
